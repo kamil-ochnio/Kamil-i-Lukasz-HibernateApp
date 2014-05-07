@@ -1,0 +1,11 @@
+- !package javahive.domain
+
+- Indeks(a):
+    numer: 1234553
+    student: Student(george)
+
+- Indeks(b):
+    numer: 123455
+
+- Indeks(c):
+    numer: 1234563

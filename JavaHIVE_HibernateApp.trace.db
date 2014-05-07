@@ -1,0 +1,36 @@
+04-30 19:06:14 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Tablela "INDEKS" nie istnieje
+Table "INDEKS" not found; SQL statement:
+
+    alter table Indeks 
+        drop constraint FK_9ee9c2oq65ce65m7rjo2g5vdm [42102-173]
+04-30 19:06:14 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Tablela "OCENA" nie istnieje
+Table "OCENA" not found; SQL statement:
+
+    alter table Ocena 
+        drop constraint FK_qem0osg390wm3ijhpa9vhrapg [42102-173]
+04-30 19:06:14 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Tablela "OCENA" nie istnieje
+Table "OCENA" not found; SQL statement:
+
+    alter table Ocena 
+        drop constraint FK_1ka9flrokelap4d9vueksjjg9 [42102-173]
+04-30 19:06:14 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Tablela "STUDENT" nie istnieje
+Table "STUDENT" not found; SQL statement:
+
+    alter table Student 
+        drop constraint FK_1aw0oasvr2il022j2bv1nkx2j [42102-173]
+04-30 19:06:14 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Tablela "STUDENT_OCENA" nie istnieje
+Table "STUDENT_OCENA" not found; SQL statement:
+
+    alter table Student_Ocena 
+        drop constraint FK_esuco1nkoxl0yj0j90ef6fqf8 [42102-173]
+04-30 19:06:14 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Tablela "STUDENT_OCENA" nie istnieje
+Table "STUDENT_OCENA" not found; SQL statement:
+
+    alter table Student_Ocena 
+        drop constraint FK_60adx558u2hldw74h2q3k46lf [42102-173]

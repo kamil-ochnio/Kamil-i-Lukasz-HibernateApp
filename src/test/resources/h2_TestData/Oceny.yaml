@@ -1,0 +1,10 @@
+- !package javahive.domain
+
+- Ocena(1):
+    wysokosc: 11
+    przedmiot: Przedmiot(matematyka)
+    student: Student(adam)
+- Ocena(2):
+    wysokosc: 4.5
+    przedmiot: Przedmiot(biologia)
+    student: Student(bartek)

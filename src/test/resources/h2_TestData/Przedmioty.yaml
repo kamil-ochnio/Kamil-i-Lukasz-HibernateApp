@@ -1,0 +1,8 @@
+- !package javahive.domain
+
+- !import h2_TestData/Oceny.yaml
+
+- Przedmiot(matematyka): 
+    nazwa: Matematyka
+- Przedmiot(biologia):
+    nazwa: Biologia

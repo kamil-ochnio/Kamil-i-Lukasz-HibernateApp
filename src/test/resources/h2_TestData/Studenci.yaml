@@ -1,0 +1,52 @@
+- !package javahive.domain
+
+- !import h2_TestData/Oceny.yaml
+
+- Student(adam):
+    imie: Adam
+    nazwisko: Abramek
+    wieczny: false
+
+- Student(adam1):
+    imie: Adam
+    nazwisko: Abramek1
+    wieczny: false
+    
+- Student(bartek):
+    imie: Bartek
+    nazwisko: Bielecki
+    wieczny: true
+
+- Student(cezary):
+    imie: Cezary
+    nazwisko: Cap
+    wieczny: false
+
+- Student(dariusz):
+    imie: Dariusz
+    nazwisko: Dziewulski
+    wieczny: false
+
+- Student(edward):
+    imie: Edward
+    nazwisko: Eklerek
+    wieczny: true
+
+- Student(grzegorz):
+    imie: Grzegorz
+    nazwisko: Grabowski
+    wieczny: false
+
+- Student(henryk):
+    imie: Henryk
+    nazwisko: Heller
+    wieczny: false
+- Student(ireneusz):
+    imie: Ireneusz
+    nazwisko: Ikarus
+    wieczny: false
+- Student(jedrzej):
+    imie: Jędrzej
+    nazwisko: Jaworowski
+    wieczny: true
+
