@@ -1,13 +1,16 @@
 package javahive.api;
 
 import javahive.api.dto.StudentDTO;
+import javahive.domain.RepozytoriumStudent;
 import javahive.domain.Student;
 import javahive.infrastruktura.Finder;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +23,13 @@ import java.util.List;
 public class StudenciApi {
     @Inject
     private Finder finder;
+    @Inject
+    private RepozytoriumStudent repozytoriumStudent;
     public List<StudentDTO> getListaWszystkichStudentow(){
         List studentciDTO=new ArrayList<StudentDTO>();
         for(Student student: finder.findAll(Student.class)){
             StudentDTO studentDTO=new StudentDTO();
+            studentDTO.setId(student.getId());
             studentDTO.setImie(student.getImie());
             studentDTO.setNazwisko(student.getNazwisko());
             studentDTO.setWieczny(student.isWieczny());
@@ -38,5 +44,9 @@ public class StudenciApi {
 
     public int getLiczbaStudentow(){
         return finder.findAll(Student.class).size();
+    }
+    
+    public void usunStudentaOZadanymId(int id){
+        repozytoriumStudent.usunStudentaOZadanymId(id);
     }
 }

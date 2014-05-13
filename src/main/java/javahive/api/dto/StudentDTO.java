@@ -15,6 +15,7 @@ import java.io.Serializable;
 @ToString
 
 public class StudentDTO implements Serializable{
+	private int id;
     private String imie;
     private String nazwisko;
     private boolean wieczny;

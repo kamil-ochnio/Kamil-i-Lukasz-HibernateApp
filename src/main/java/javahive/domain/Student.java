@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.FilterDefs;
@@ -45,7 +47,8 @@ public class Student extends BaseEntity {
 	private String nazwisko;
 	private boolean wieczny;
 	//@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
-    @OneToMany
+    @OneToMany(mappedBy="student")
+    @Cascade(CascadeType.ALL)
 	private List<Ocena> oceny=Lists.newArrayList();
     @OneToOne
     private Indeks indeks;
