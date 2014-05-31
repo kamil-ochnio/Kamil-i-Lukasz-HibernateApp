@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javahive.domain.RepozytoriumStudent;
-import javahive.domain.Student;
+import javahive.api.dto.StudentDTO;
+import javahive.domain.*;
+import javahive.infrastruktura.Finder;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Filter;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -38,7 +39,9 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
             r.add(clazz.cast(o));
         return r;
     }
-
+    
+    @Inject
+    Finder finder;
     @Override
     public List<Student> getStudenciPoNazwisku_HQL(String nazwisko) {
         Session session = entityManager.unwrap(Session.class);
@@ -137,5 +140,21 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         Student student = (Student) criteria.uniqueResult();
         entityManager.remove(student);
 
+    }
+    
+    @Override
+    public void dodajStudenta(StudentDTO studentDto, String nrIndeksu) {
+        Student student = new Student();
+        student.setImie(studentDto.getImie());
+        student.setNazwisko(studentDto.getNazwisko());
+        student.setWieczny(studentDto.isWieczny());
+        if(!"".equals(nrIndeksu)){
+            Indeks indeks= new Indeks();
+            indeks.setNumer(nrIndeksu);
+            student.setIndeks(indeks);
+            indeks.setStudent(student);
+        }
+        entityManager.persist(student);
+        
     }
 }

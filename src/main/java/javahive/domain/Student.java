@@ -51,5 +51,6 @@ public class Student extends BaseEntity {
     @Cascade(CascadeType.ALL)
 	private List<Ocena> oceny=Lists.newArrayList();
     @OneToOne
+    @Cascade(CascadeType.ALL)
     private Indeks indeks;
 }

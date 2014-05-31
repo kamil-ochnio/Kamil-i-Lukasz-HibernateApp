@@ -1,6 +1,7 @@
 package javahive.api;
 
 import javahive.api.dto.StudentDTO;
+import javahive.domain.Indeks;
 import javahive.domain.RepozytoriumStudent;
 import javahive.domain.Student;
 import javahive.infrastruktura.Finder;
@@ -26,7 +27,7 @@ public class StudenciApi {
     @Inject
     private RepozytoriumStudent repozytoriumStudent;
     public List<StudentDTO> getListaWszystkichStudentow(){
-        List studentciDTO=new ArrayList<StudentDTO>();
+        List <StudentDTO> studentciDTO=new ArrayList<StudentDTO>();
         for(Student student: finder.findAll(Student.class)){
             StudentDTO studentDTO=new StudentDTO();
             studentDTO.setId(student.getId());
@@ -35,6 +36,8 @@ public class StudenciApi {
             studentDTO.setWieczny(student.isWieczny());
             if(student.getIndeks()!=null){
                 studentDTO.setNumerIndeksu(student.getIndeks().getNumer());
+            }else{
+                studentDTO.setNumerIndeksu("brak");
             }
             studentciDTO.add(studentDTO);
         }
@@ -46,7 +49,29 @@ public class StudenciApi {
         return finder.findAll(Student.class).size();
     }
     
-    public void usunStudentaOZadanymId(int id){
-        repozytoriumStudent.usunStudentaOZadanymId(id);
+    public void usunStudentaOZadanymId(int id)throws Exception{
+        List <Student> studenty = finder.findAll(Student.class);
+        boolean zawieraSie = false;
+        for(Student student : studenty){
+            if(student.getId()==id){
+                zawieraSie = true;
+            }
+        }
+        if(zawieraSie){
+            repozytoriumStudent.usunStudentaOZadanymId(id);
+        }else{
+            throw new Exception("Student o zadanym id nie figuruje w bazie danych");
+        }
+        
+    }
+    
+    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws Exception{
+        List <Indeks> indeksy = finder.findAll(Indeks.class);
+        for(Indeks indeks : indeksy){
+            if (indeks.getNumer().equals(numerIndeksu)){
+                throw new Exception("Ten nr. indeksu jest juz zajety");
+            }
+        }
+        repozytoriumStudent.dodajStudenta(student, numerIndeksu);
     }
 }

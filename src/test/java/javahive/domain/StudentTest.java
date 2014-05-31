@@ -2,10 +2,12 @@ package javahive.domain;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import javahive.api.StudenciApi;
+import javahive.api.dto.StudentDTO;
 import javahive.infrastruktura.Finder;
 
 import javax.inject.Inject;
@@ -13,6 +15,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hamcrest.Matchers;
+import org.hamcrest.core.IsEqual;
+import org.hibernate.ejb.criteria.expression.function.LowerFunction;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -174,6 +178,57 @@ public class StudentTest {
         List<Indeks> indeksy = finder.findAll(Indeks.class);
         System.out.println(indeksy.size());
     }
-
+    
+    @Test
+    public void powinienDodacStudentaZIndeksem(){
+        //given
+        String nrIndeksu = "12322121";
+        StudentDTO student = new StudentDTO();
+        student.setImie("Łukasz");
+        student.setNazwisko("Winiarczyk");
+        student.setWieczny(true);
+        int iloscStudentowPrzedDodaniem = finder.findAll(Student.class).size();
+        //when
+        repozytoriumStudentImpl.dodajStudenta(student, nrIndeksu);
+        //then
+        int iloscStudentowPoDodaniu = finder.findAll(Student.class).size();
+        assertThat(iloscStudentowPoDodaniu, is(iloscStudentowPrzedDodaniem+1));
+    }
+    
+    @Test (expected = Exception.class)
+    public void powinienZwrocicWyjatekPrzyDodaniuDuplikatuIndeksu() throws Exception{
+        //given
+        String nrIndeksu = "1234563"; //indeks juz istnieje w yaml
+        StudentDTO student = new StudentDTO();
+        student.setImie("Łukasz");
+        student.setNazwisko("Winiarczyk");
+        student.setWieczny(true);
+        //when
+        studenciApi.dodajStudenta(student, nrIndeksu);
+        //then
+        fail();
+    }
+    
+    @Test 
+    public void powinienUsunacStudentaOZadanymId() {
+        //given
+        int id=1;
+        int iloscStudentowPrzedUsunieciem = finder.findAll(Student.class).size();
+        //when
+        repozytoriumStudentImpl.usunStudentaOZadanymId(id);
+        int iloscStudentowPoUsunieciu = finder.findAll(Student.class).size();
+        //then
+        assertThat(iloscStudentowPoUsunieciu, is(iloscStudentowPrzedUsunieciem-1));
+    }
+    
+    @Test(expected = Exception.class)
+    public void powinienZwrocicWyjatekPobujacUsunacStudentaONieistniejacymId() throws Exception{
+        //given
+        int id=1000;
+        //when
+        studenciApi.usunStudentaOZadanymId(id);
+        //then
+        fail();
+    }
 
 }

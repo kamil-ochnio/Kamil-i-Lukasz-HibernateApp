@@ -41,12 +41,13 @@
     imie: Henryk
     nazwisko: Heller
     wieczny: false
+    
 - Student(ireneusz):
     imie: Ireneusz
     nazwisko: Ikarus
     wieczny: false
+    
 - Student(jedrzej):
     imie: Jędrzej
     nazwisko: Jaworowski
     wieczny: true
-
