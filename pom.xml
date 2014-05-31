@@ -2,8 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>javahive</groupId>
-	<artifactId>HibernateApp</artifactId>
+	<groupId>com.blogspot.Java-HIVE.2014</groupId>
+	<artifactId>Student-Domena.Winiarczyk-Ochnio</artifactId>
+	<name>Student-Domena</name>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<build>
