@@ -36,6 +36,7 @@ public class StudentTest {
     public static final String FRAGMENT_NAZWISKA = "a";
     public static final int MIN_ID_VAL = 3;
     public static final int LICZBA_STUDENTOW = 11;
+    public static final int LICZBA_PRZEDMIOTOW = 11;
     
     @PersistenceContext
     private EntityManager entityManager;
@@ -55,6 +56,17 @@ public class StudentTest {
         	int liczbaStudentow = listaStudentow.size();
         //then
         	assertThat(liczbaStudentow, is(LICZBA_STUDENTOW_W_YAML));
+    }
+    
+    
+    @Test
+    public void powinienZwrocicListePrzedmiotow() {
+        //given
+        	List<Przedmiot> listaPrzedmiotow = finder.findAll(Przedmiot.class);
+        //when
+        	int liczbaPrzedmiotow = listaPrzedmiotow.size();
+        //then
+        	assertThat(liczbaPrzedmiotow, is(LICZBA_PRZEDMIOTOW));
     }
     
     @Test

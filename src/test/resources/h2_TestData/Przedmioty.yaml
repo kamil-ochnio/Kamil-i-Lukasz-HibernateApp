@@ -6,3 +6,10 @@
     nazwa: Matematyka
 - Przedmiot(biologia):
     nazwa: Biologia
+- Przedmiot(chemia):
+    nazwa: Chemia
+- Przedmiot(jezykpolski):
+    nazwa: Jezyk Polski
+- Przedmiot(informatyka):
+    nazwa: Informatyka
+    

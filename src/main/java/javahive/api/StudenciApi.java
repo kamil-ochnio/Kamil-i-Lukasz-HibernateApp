@@ -2,6 +2,7 @@ package javahive.api;
 
 import javahive.api.dto.StudentDTO;
 import javahive.domain.Indeks;
+import javahive.domain.Przedmiot;
 import javahive.domain.RepozytoriumStudent;
 import javahive.domain.Student;
 import javahive.infrastruktura.Finder;
@@ -48,6 +49,13 @@ public class StudenciApi {
     public int getLiczbaStudentow(){
         return finder.findAll(Student.class).size();
     }
+    
+    public List<Przedmiot> getPrzemioty(){
+        return finder.findAll(Przedmiot.class);
+    }
+    
+
+    
     
     public void usunStudentaOZadanymId(int id)throws Exception{
         List <Student> studenty = finder.findAll(Student.class);
