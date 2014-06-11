@@ -15,8 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hamcrest.Matchers;
-import org.hamcrest.core.IsEqual;
-import org.hibernate.ejb.criteria.expression.function.LowerFunction;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,14 +69,14 @@ public class StudentTest {
     @Test
     public void powinienDodacStudenta() {
         //given
-        	List<Student> listaStudentow = finder.findAll(Student.class);
+            Student s = new Student();
+            s.setImie("Jan");
+            s.setNazwisko("Kwas");
+            s.setWieczny(true);
         //when
-	        int liczbaStudentow = listaStudentow.size();
-	        Student s = new Student();
-	        s.setImie("Jan");
-	        s.setNazwisko("Kwas");
-	        s.setWieczny(true);
 	        entityManager.persist(s);
+	        List<Student> listaStudentow = finder.findAll(Student.class);
+	        int liczbaStudentow = listaStudentow.size();
         //then
 	        assertThat(liczbaStudentow, is(LICZBA_STUDENTOW_W_YAML + 1));
     }
@@ -97,8 +95,8 @@ public class StudentTest {
     @Test
     public void sprawdzLiczStudPoNazwiskuJPQLvsHQL(){
     	//given
-	    	List<Student> listaStudentowHQL  = repozytoriumStudentImpl.getStudenciPoNazwisku_HQL(NAZWISKO);
-	    	List<Student> listaStudentowJPQL = repozytoriumStudentImpl.getStudenciPoNazwisku_JPQL(NAZWISKO);
+	    	List<Student> listaStudentowHQL  = repozytoriumStudentImpl.getStudenciPoNazwiskuHQL(NAZWISKO);
+	    	List<Student> listaStudentowJPQL = repozytoriumStudentImpl.getStudenciPoNazwiskuJPQL(NAZWISKO);
 	   	//when
 	    	int iloscStudHQL = listaStudentowHQL.size();
 	    	int iloscStudJPQL= listaStudentowJPQL.size();
@@ -166,24 +164,6 @@ public class StudentTest {
     	assertThat(liczbaStudentow, Matchers.is(LICZBA_STUDENTOW_W_YAML));
     }
     
-    @Ignore
-    @Test
-    public void powinienZwrocicProjekcjaStudentowRosnacoPoNumerzeIndeksu(){
-    	//given
-    	
-    	//when
-    	//then    	
-    }
-    
-    @Ignore //skopany test, trzeba dobrze powiazać oceny
-    @Test
-    public void sprawdzOceny() {
-        Student s = finder.findAll(Student.class).get(0);
-        System.out.println("***" + s.getImie());
-        assertThat(s.getOceny().size(), is(0));
-        System.out.println(s.getOceny());
-    }
-   
     @Test
     public void powinienZwrocicWieleIndeksow() {
         List<Indeks> indeksy = finder.findAll(Indeks.class);
@@ -254,6 +234,17 @@ public class StudentTest {
         int nowaIloscOcenStudenta = repozytoriumStudentImpl.getStudentPoId(idStudenta).getOceny().size();
         //then
         assertThat(iloscOcenStudenta+1, is(nowaIloscOcenStudenta));
+    }
+    
+    @Test
+    public void powinienDobrzeZliczycOcenyStudentaOZadanymId(){
+        //given
+        int idStudenta = 1;
+        int iloscOcenStudentaWBazie = 1;
+        //when
+        int iloscOcenStudentaPobrana = studenciApi.getOcenyStudentaOId(idStudenta).size();
+        //then
+        assertThat(iloscOcenStudentaPobrana, is(iloscOcenStudentaWBazie));
         
     }
 

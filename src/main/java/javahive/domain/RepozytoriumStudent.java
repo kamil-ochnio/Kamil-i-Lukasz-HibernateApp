@@ -5,9 +5,9 @@ import java.util.List;
 import javahive.api.dto.StudentDTO;
 
 public interface RepozytoriumStudent {
-    List<Student> getStudenciPoNazwisku_HQL(String nazwisko);
-    List<Student> getStudenciPoNazwisku_JPQL(String nazwisko);
-    List<Student> getStudenciPoNazwisku_CRITERIA(String nazwisko);
+    List<Student> getStudenciPoNazwiskuHQL(String nazwisko);
+    List<Student> getStudenciPoNazwiskuJPQL(String nazwisko);
+    List<Student> getStudenciPoNazwiskuCRITERIA(String nazwisko);
     Student getStudentPoId(int id);
     
     // Filtry - z Hibernate

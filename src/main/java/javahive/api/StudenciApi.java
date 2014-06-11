@@ -2,6 +2,7 @@ package javahive.api;
 
 import javahive.api.dto.StudentDTO;
 import javahive.domain.Indeks;
+import javahive.domain.Ocena;
 import javahive.domain.Przedmiot;
 import javahive.domain.RepozytoriumStudent;
 import javahive.domain.Student;
@@ -81,5 +82,9 @@ public class StudenciApi {
             }
         }
         repozytoriumStudent.dodajStudenta(student, numerIndeksu);
+    }
+    
+    public List <Ocena> getOcenyStudentaOId(int id){
+        return repozytoriumStudent.getStudentPoId(id).getOceny();
     }
 }
