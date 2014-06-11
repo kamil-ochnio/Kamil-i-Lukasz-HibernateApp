@@ -36,7 +36,7 @@ public class StudentTest {
     public static final String FRAGMENT_NAZWISKA = "a";
     public static final int MIN_ID_VAL = 3;
     public static final int LICZBA_STUDENTOW = 11;
-    public static final int LICZBA_PRZEDMIOTOW = 11;
+    public static final int LICZBA_PRZEDMIOTOW = 5;
     
     @PersistenceContext
     private EntityManager entityManager;
