@@ -185,4 +185,17 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         Przedmiot przedmiot = (Przedmiot) criteria.uniqueResult();
         return przedmiot;
     }
+
+    @Override
+    public List<Ocena> getOcenyStudentaOId(int id) {
+        List <Ocena> oceny = getStudentPoId(id).getOceny();
+        List <Ocena> ocenyTravel = new ArrayList <Ocena>();
+        for(Ocena ocena : oceny){
+            Ocena ocenaTemp = new Ocena();
+            ocenaTemp.setPrzedmiot(ocena.getPrzedmiot());
+            ocenaTemp.setWysokosc(ocena.getWysokosc());
+            ocenyTravel.add(ocenaTemp);
+        }
+        return ocenyTravel;
+    }
 }

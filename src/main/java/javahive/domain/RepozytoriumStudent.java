@@ -26,4 +26,5 @@ public interface RepozytoriumStudent {
     //Oceny i przedmioty
     void dodajOcene(int studentId, String nazwaPrzedmiotu, String ocena);
     Przedmiot getPrzedmiotPoNazwie(String nazwa);
+    List <Ocena> getOcenyStudentaOId(int id);
 }

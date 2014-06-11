@@ -85,6 +85,10 @@ public class StudenciApi {
     }
     
     public List <Ocena> getOcenyStudentaOId(int id){
-        return repozytoriumStudent.getStudentPoId(id).getOceny();
+        return repozytoriumStudent.getOcenyStudentaOId(id);
+    }
+    
+    public void dodajOceneStudentowi(int studentId, String nazwaPrzedmiotu, String ocena){
+        repozytoriumStudent.dodajOcene(studentId, nazwaPrzedmiotu, ocena);
     }
 }
