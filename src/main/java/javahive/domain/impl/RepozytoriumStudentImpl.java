@@ -134,10 +134,7 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
 
     @Override
     public void usunStudentaOZadanymId(int id) {
-        Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Student.class);
-        criteria.add(Restrictions.like("id", id));
-        Student student = (Student) criteria.uniqueResult();
+        Student student = getStudentPoId(id);
         entityManager.remove(student);
 
     }
@@ -156,5 +153,36 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         }
         entityManager.persist(student);
         
+    }
+
+    @Override
+    public void dodajOcene(int studentId, String nazwaPrzedmiotu, String ocena) {
+        Student student = getStudentPoId(studentId);
+        Przedmiot przedmiot = getPrzedmiotPoNazwie(nazwaPrzedmiotu);
+        Ocena nowaOcena = new Ocena();
+        nowaOcena.setPrzedmiot(przedmiot);
+        nowaOcena.setStudent(student);
+        nowaOcena.setWysokosc(ocena);
+        entityManager.persist(nowaOcena);
+        student.getOceny().add(nowaOcena);
+        entityManager.merge(student);
+    }
+
+    @Override
+    public Student getStudentPoId(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        Criteria criteria = session.createCriteria(Student.class);
+        criteria.add(Restrictions.like("id", id));
+        Student student = (Student) criteria.uniqueResult();
+        return student;
+    }
+
+    @Override
+    public Przedmiot getPrzedmiotPoNazwie(String nazwa) {
+        Session session = entityManager.unwrap(Session.class);
+        Criteria criteria = session.createCriteria(Przedmiot.class);
+        criteria.add(Restrictions.like("nazwa", nazwa));
+        Przedmiot przedmiot = (Przedmiot) criteria.uniqueResult();
+        return przedmiot;
     }
 }

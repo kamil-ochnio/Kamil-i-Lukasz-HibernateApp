@@ -31,11 +31,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class StudentTest {
-    public static final int LICZBA_STUDENTOW_W_YAML = 10;
+    public static final int LICZBA_STUDENTOW_W_YAML = 11;
     public static final String NAZWISKO = "Nowak";
     public static final String FRAGMENT_NAZWISKA = "a";
     public static final int MIN_ID_VAL = 3;
-    public static final int LICZBA_STUDENTOW = 11;
     public static final int LICZBA_PRZEDMIOTOW = 5;
     
     @PersistenceContext
@@ -47,9 +46,9 @@ public class StudentTest {
     @Inject
     private StudenciApi studenciApi;
     
-    @Ignore
+    
     @Test
-    public void powinienZwrocic10Studentow() {
+    public void powinienZwrocic11Studentow() {
         //given
         	List<Student> listaStudentow = finder.findAll(Student.class);
         //when
@@ -164,7 +163,7 @@ public class StudentTest {
     	//when
     	int liczbaStudentow = studenci.size();
     	//then     
-    	assertThat(liczbaStudentow, Matchers.is(LICZBA_STUDENTOW));
+    	assertThat(liczbaStudentow, Matchers.is(LICZBA_STUDENTOW_W_YAML));
     }
     
     @Ignore
@@ -241,6 +240,21 @@ public class StudentTest {
         studenciApi.usunStudentaOZadanymId(id);
         //then
         fail();
+    }
+    
+    @Test
+    public void powinienDodacOceneStudentowi(){
+        //given
+        String ocena = "3";
+        String nazwaPrzedmiotu = "Informatyka";
+        int idStudenta = 1;
+        int iloscOcenStudenta = repozytoriumStudentImpl.getStudentPoId(idStudenta).getOceny().size();
+        //when
+        repozytoriumStudentImpl.dodajOcene(idStudenta, nazwaPrzedmiotu, ocena);
+        int nowaIloscOcenStudenta = repozytoriumStudentImpl.getStudentPoId(idStudenta).getOceny().size();
+        //then
+        assertThat(iloscOcenStudenta+1, is(nowaIloscOcenStudenta));
+        
     }
 
 }
