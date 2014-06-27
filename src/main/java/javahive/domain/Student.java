@@ -43,14 +43,14 @@ import com.google.common.collect.Lists;
 
 public class Student extends BaseEntity {
 	public Student(){};
-	private String imie;
-	private String nazwisko;
-	private boolean wieczny;
+	private String imie;//NOSONAR
+	private String nazwisko;//NOSONAR
+	private boolean wieczny;//NOSONAR
 	//@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
     @OneToMany(mappedBy="student")
     @Cascade(CascadeType.ALL)
-	private List<Ocena> oceny=Lists.newArrayList();
+	private List<Ocena> oceny=Lists.newArrayList();//NOSONAR
     @OneToOne
     @Cascade(CascadeType.ALL)
-    private Indeks indeks;
+    private Indeks indeks;//NOSONAR
 }

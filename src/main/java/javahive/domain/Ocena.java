@@ -14,9 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Ocena extends BaseEntity {
 	public Ocena(){};
-	private String wysokosc;
+	private String wysokosc;//NOSONAR
 	@ManyToOne(optional = true)
-	private Student student;
+	private Student student;//NOSONAR
 	@ManyToOne(optional = true)
-	private Przedmiot przedmiot;
+	private Przedmiot przedmiot;//NOSONAR
 }
