@@ -58,7 +58,7 @@ public class StudenciApi {
 
     
     
-    public void usunStudentaOZadanymId(int id)throws Exception{
+    public void usunStudentaOZadanymId(int id)throws IllegalArgumentException{
         List <Student> studenty = finder.findAll(Student.class);
         boolean zawieraSie = false;
         for(Student student : studenty){
@@ -69,16 +69,16 @@ public class StudenciApi {
         if(zawieraSie){
             repozytoriumStudent.usunStudentaOZadanymId(id);
         }else{
-            throw new Exception("Student o zadanym id nie figuruje w bazie danych");
+            throw new IllegalArgumentException ("Student o zadanym id nie figuruje w bazie danych");
         }
         
     }
     
-    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws Exception{
+    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws IllegalArgumentException{
         List <Indeks> indeksy = finder.findAll(Indeks.class);
         for(Indeks indeks : indeksy){
             if (indeks.getNumer().equals(numerIndeksu)){
-                throw new Exception("Ten nr. indeksu jest juz zajety");
+                throw new IllegalArgumentException("Ten nr. indeksu jest juz zajety");
             }
         }
         repozytoriumStudent.dodajStudenta(student, numerIndeksu);

@@ -13,10 +13,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Ocena extends BaseEntity {
-	public Ocena(){};
-	private String wysokosc;//NOSONAR
-	@ManyToOne(optional = true)
-	private Student student;//NOSONAR
-	@ManyToOne(optional = true)
-	private Przedmiot przedmiot;//NOSONAR
+    public Ocena(){};
+    @SuppressWarnings("unused")
+    private String wysokosc;
+    @ManyToOne(optional = true)
+    @SuppressWarnings("unused")
+    private Student student;
+    @ManyToOne(optional = true)
+    @SuppressWarnings("unused")
+    private Przedmiot przedmiot;
 }

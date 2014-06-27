@@ -66,7 +66,6 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Student.class);
         criteria.add(Restrictions.like("nazwisko", nazwisko.toLowerCase()));
-        // return session.createCriteria(nu).uniqueResult();
         return castList(Student.class, criteria.list());
     }
 
@@ -108,10 +107,7 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         Filter filter = session.enableFilter("FILTER_TEST_STUDENT_ID");
         filter.setParameter("PARAM_student_ID", minID);
 
-        /*
-         * Filter filter = session.enableFilter("studentFilter");
-         * filter.setParameter("studentFilterID", minID);
-         */
+       
 
         org.hibernate.Query query = session.createQuery(QUERY_STUDENT);
 
@@ -174,8 +170,8 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Student.class);
         criteria.add(Restrictions.like("id", id));
-        Student student = (Student) criteria.uniqueResult();
-        return student;
+       
+        return (Student) criteria.uniqueResult();
     }
 
     @Override
@@ -183,8 +179,7 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Przedmiot.class);
         criteria.add(Restrictions.like("nazwa", nazwa));
-        Przedmiot przedmiot = (Przedmiot) criteria.uniqueResult();
-        return przedmiot;
+        return (Przedmiot) criteria.uniqueResult();
     }
 
     @Override

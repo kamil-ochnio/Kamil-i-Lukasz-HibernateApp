@@ -9,23 +9,21 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Component;
-
 @Component
 public class Finder{
-	
-	@PersistenceContext
-	public EntityManager entityManager;
-	
-	public Finder(){}
-	
-	public <T> List<T> findAll(Class <T> c){
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<T> criteria = builder.createQuery(c);
-		Root<T> entityRoot = criteria.from(c);
-		criteria.select(entityRoot);
-		List<T> entities = entityManager.createQuery( criteria ).getResultList();
-		return entities;
-	}
-	
-	
+
+@PersistenceContext
+private EntityManager entityManager;
+
+public Finder(){}
+
+public <T> List<T> findAll(Class <T> c){
+    CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<T> criteria = builder.createQuery(c);
+    Root<T> entityRoot = criteria.from(c);
+    criteria.select(entityRoot);
+    return entityManager.createQuery( criteria ).getResultList();
+}
+
+
 }

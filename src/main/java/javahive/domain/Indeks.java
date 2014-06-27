@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 public class Indeks extends BaseEntity {
     public Indeks(){};
     @OneToOne
-    private Student student;//NOSONAR
-    private String numer;//NOSONAR
+    @SuppressWarnings("unused")
+    private Student student;
+    @SuppressWarnings("unused")
+    private String numer;
 }

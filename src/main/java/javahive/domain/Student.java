@@ -28,29 +28,36 @@ import com.google.common.collect.Lists;
 
 //Definicja ustala na jakich atrybutach/polach encji filtr ma działać
 @FilterDefs({
-	@FilterDef(	name="FILTER_TEST_STUDENT_NAZWISKO", 
-				parameters=@ParamDef( name="PARAM_student_Nazwisko", type="String" ) ),
-	@FilterDef(	name="FILTER_TEST_STUDENT_ID", 
-				parameters=@ParamDef( name="PARAM_student_ID", type="int" ) )
+    @FilterDef(	name="FILTER_TEST_STUDENT_NAZWISKO",
+            parameters=@ParamDef( name="PARAM_student_Nazwisko", type="String" ) ),
+            @FilterDef(	name="FILTER_TEST_STUDENT_ID", 
+            parameters=@ParamDef( name="PARAM_student_ID", type="int" ) )
 })
-
+    
 // Fitlry określają jaki ma zostać spełniony warunek na zadanych w definicji parametrach
 @Filters({
-	@Filter(name = "FILTER_TEST_STUDENT_NAZWISKO", condition = "lower(nazwisko) like :PARAM_student_Nazwisko"),
-	@Filter(name = "FILTER_TEST_STUDENT_ID", condition = "id > :PARAM_student_ID")
+    @Filter(name = "FILTER_TEST_STUDENT_NAZWISKO", condition = "lower(nazwisko) like :PARAM_student_Nazwisko"),
+        @Filter(name = "FILTER_TEST_STUDENT_ID", condition = "id > :PARAM_student_ID")
 })
 
 
 public class Student extends BaseEntity {
-	public Student(){};
-	private String imie;//NOSONAR
-	private String nazwisko;//NOSONAR
-	private boolean wieczny;//NOSONAR
-	//@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
+    public Student(){};
+        @SuppressWarnings("unused")
+        private String imie;
+        @SuppressWarnings("unused")
+        private String nazwisko;
+        @SuppressWarnings("unused")
+        private boolean wieczny;
+        //@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
+    	
     @OneToMany(mappedBy="student")
     @Cascade(CascadeType.ALL)
-	private List<Ocena> oceny=Lists.newArrayList();//NOSONAR
+    @SuppressWarnings("unused")
+    private List<Ocena> oceny=Lists.newArrayList();
     @OneToOne
     @Cascade(CascadeType.ALL)
-    private Indeks indeks;//NOSONAR
+    @SuppressWarnings("unused")
+    private Indeks indeks;
 }
+        

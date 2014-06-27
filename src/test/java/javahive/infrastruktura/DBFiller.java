@@ -14,33 +14,33 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-
+    
 @Component
 public class DBFiller implements ApplicationContextAware{
-
-
+    
+    
     @Inject
     private EntityManagerFactory entityManagerFactory;
 
-	@PostConstruct
-	public void fill(){
+    @PostConstruct
+    public void fill(){
         EntityManager entityManager=entityManagerFactory.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		Fixy fixtures = new JpaFixyBuilder(entityManager).withDefaultPackage("h2_TestData").useFieldAccess().build();
-		fixtures.load("h2_TestData/Studenci.yaml");
-		fixtures.load("h2_TestData/Przedmioty.yaml");
-		fixtures.load("h2_TestData/Oceny.yaml");
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        Fixy fixtures = new JpaFixyBuilder(entityManager).withDefaultPackage("h2_TestData").useFieldAccess().build();
+        fixtures.load("h2_TestData/Studenci.yaml");
+        fixtures.load("h2_TestData/Przedmioty.yaml");
+        fixtures.load("h2_TestData/Oceny.yaml");
         fixtures.load("h2_TestData/Indeksy.yaml");
-		transaction.commit();
-		entityManager.close();
-	}
-
-
-
-	private ApplicationContext applicationContext;
-	public void setApplicationContext(ApplicationContext applicationContext)
-			throws BeansException {
-		this.applicationContext=applicationContext;
-	}
+        transaction.commit();
+        entityManager.close();
+        }
+    
+    
+    
+    private ApplicationContext applicationContext;
+    public void setApplicationContext(ApplicationContext applicationContext)
+    throws BeansException {
+        this.applicationContext=applicationContext;
+        }
 }

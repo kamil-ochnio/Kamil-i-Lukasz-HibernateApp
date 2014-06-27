@@ -9,5 +9,6 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Przedmiot extends BaseEntity {
-	private String nazwa;//NOSONAR
+    @SuppressWarnings("unused")
+    private String nazwa;
 }
