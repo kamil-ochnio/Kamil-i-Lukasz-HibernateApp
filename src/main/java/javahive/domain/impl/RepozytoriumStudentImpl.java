@@ -35,13 +35,14 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
     private static <T> List<T> castList(Class<? extends T> clazz,
             Collection<?> c) {
         List<T> r = new ArrayList<T>(c.size());
-        for (Object o : c)
+        for (Object o : c){
             r.add(clazz.cast(o));
+        }
         return r;
     }
     
     @Inject
-    Finder finder;
+    private Finder finder;
     @Override
     public List<Student> getStudenciPoNazwiskuHQL(String nazwisko) {
         Session session = entityManager.unwrap(Session.class);
