@@ -38,8 +38,6 @@ import com.google.common.collect.Lists;
 
 
 public class Student extends BaseEntity {
-    
-    private static final String NIEUZYWANY = "unused";
     public Student(){};
    
         private String imie;//NOSONAR
