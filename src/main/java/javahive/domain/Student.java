@@ -39,7 +39,7 @@ import com.google.common.collect.Lists;
 
 public class Student extends BaseEntity {
     public Student(){};
-    private static final String NIEUZYWANY = "unused";
+    private static final String NIEUZYWANY = "Unused";
 @SuppressWarnings(NIEUZYWANY)
         private String imie;
 @SuppressWarnings(NIEUZYWANY)
