@@ -1,11 +1,15 @@
 package javahive.domain;
 import java.util.List;
+
 import javahive.infrastruktura.BaseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Filter;
@@ -13,6 +17,7 @@ import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.FilterDefs;
 import org.hibernate.annotations.Filters;
 import org.hibernate.annotations.ParamDef;
+
 import com.google.common.collect.Lists;
 @Getter
 @Setter
@@ -34,16 +39,22 @@ import com.google.common.collect.Lists;
 
 public class Student extends BaseEntity {
     public Student(){};
-        private String imie;//NOSONAR
-        private String nazwisko;//NOSONAR
-        private boolean wieczny;//NOSONAR
+    private static final String NIEUZYWANY = "unused";
+@SuppressWarnings(NIEUZYWANY)
+        private String imie;
+@SuppressWarnings(NIEUZYWANY)
+        private String nazwisko;
+@SuppressWarnings(NIEUZYWANY)
+        private boolean wieczny;
         //@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
     
     @OneToMany(mappedBy="student")
     @Cascade(CascadeType.ALL)
-    private List<Ocena> oceny=Lists.newArrayList();//NOSONAR
+    @SuppressWarnings(NIEUZYWANY)
+    private List<Ocena> oceny=Lists.newArrayList();
     @OneToOne
     @Cascade(CascadeType.ALL)
-    private Indeks indeks;//NOSONAR
+    @SuppressWarnings(NIEUZYWANY)
+    private Indeks indeks;
 }
         
