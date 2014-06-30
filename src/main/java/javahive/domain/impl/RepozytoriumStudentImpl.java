@@ -22,8 +22,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RepozytoriumStudentImpl implements RepozytoriumStudent {
-    private static final String parametr = "nazwisko";
-    private static final String nieoczekiwany = "unchecked";
+    private final String parametr = "nazwisko";
+    private final String nieoczekiwany = "unchecked";
     private static final String QUERY_STUDENT_LASTNAME = "SELECT s FROM Student s "
             + "WHERE LOWER(s.nazwisko) = :nazwisko";
     private static final String QUERY_STUDENT_LIKE_LASTNAME = "FROM Student s "

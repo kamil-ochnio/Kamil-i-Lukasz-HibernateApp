@@ -34,7 +34,7 @@ import com.google.common.collect.Lists;
 
 
 public class Student extends BaseEntity {
-private static final String nieuzywana="unused";
+ private final String nieuzywana="unused";
     public Student(){};
         @SuppressWarnings(nieuzywana)
         private String imie;
@@ -43,7 +43,7 @@ private static final String nieuzywana="unused";
         @SuppressWarnings(nieuzywana)
         private boolean wieczny;
         //@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
-    	
+    
     @OneToMany(mappedBy="student")
     @Cascade(CascadeType.ALL)
     @SuppressWarnings(nieuzywana)
