@@ -15,14 +15,15 @@ import java.io.Serializable;
 @ToString
 
 public class StudentDTO implements Serializable{
-    @SuppressWarnings("unused")
+    private static final String nieuzywana="unused";
+    @SuppressWarnings(nieuzywana)
     private int id;
-    @SuppressWarnings("unused")
+    @SuppressWarnings(nieuzywana)
     private String imie;
-    @SuppressWarnings("unused")
+    @SuppressWarnings(nieuzywana)
     private String nazwisko;
-    @SuppressWarnings("unused")
+    @SuppressWarnings(nieuzywana)
     private boolean wieczny;
-    @SuppressWarnings("unused")
+    @SuppressWarnings(nieuzywana)
     private String numerIndeksu;
 }

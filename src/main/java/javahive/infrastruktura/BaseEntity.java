@@ -10,7 +10,8 @@ import lombok.Getter;
 @Getter
 @MappedSuperclass
 public class BaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @SuppressWarnings("unused")
+    private int id;
 }

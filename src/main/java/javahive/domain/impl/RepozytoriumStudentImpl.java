@@ -22,6 +22,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RepozytoriumStudentImpl implements RepozytoriumStudent {
+    private static final String parametr = "nazwisko";
+    private static final String nieoczekiwany = "unchecked";
     private static final String QUERY_STUDENT_LASTNAME = "SELECT s FROM Student s "
             + "WHERE LOWER(s.nazwisko) = :nazwisko";
     private static final String QUERY_STUDENT_LIKE_LASTNAME = "FROM Student s "
@@ -42,21 +44,22 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
     }
     
     @Inject
+    @SuppressWarnings("unused")
     private Finder finder;
     @Override
     public List<Student> getStudenciPoNazwiskuHQL(String nazwisko) {
         Session session = entityManager.unwrap(Session.class);
         org.hibernate.Query query = session.createQuery(QUERY_STUDENT_LASTNAME);
-        query.setParameter("nazwisko", nazwisko.toLowerCase());
+        query.setParameter(parametr, nazwisko.toLowerCase());
 
-        return castList(Student.class, query.list()); // session close?
+        return castList(Student.class, query.list());
     }
 
     @Override
     public List<Student> getStudenciPoNazwiskuJPQL(String nazwisko) {
         javax.persistence.Query query = entityManager
                 .createQuery(QUERY_STUDENT_LASTNAME);
-        query.setParameter("nazwisko", nazwisko.toLowerCase());
+        query.setParameter(parametr, nazwisko.toLowerCase());
 
         return castList(Student.class, query.getResultList());
     }
@@ -65,7 +68,7 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
     public List<Student> getStudenciPoNazwiskuCRITERIA(String nazwisko) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Student.class);
-        criteria.add(Restrictions.like("nazwisko", nazwisko.toLowerCase()));
+        criteria.add(Restrictions.like(parametr, nazwisko.toLowerCase()));
         return castList(Student.class, criteria.list());
     }
 
@@ -75,7 +78,7 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(nieoczekiwany)
     @Override
     public List<Student> getStudenciZFiltorwanymNazwiskiem(
             String fragmentNazwiska) {
@@ -90,16 +93,16 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         return query.list();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(nieoczekiwany)
     public List<Student> getStudenciJPQLPoFragmencieNazwiska(
             String fragmentNazwiska) {
         javax.persistence.Query query = entityManager
                 .createQuery(QUERY_STUDENT_LIKE_LASTNAME);
-        query.setParameter("nazwisko", fragmentNazwiska.toLowerCase());
+        query.setParameter(parametr, fragmentNazwiska.toLowerCase());
         return query.getResultList();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(nieoczekiwany)
     @Override
     public List<Student> getStudenciZIDWiekszymNizDolnaWartosc(int minID) {
         Session session = entityManager.unwrap(Session.class);
@@ -114,7 +117,7 @@ public class RepozytoriumStudentImpl implements RepozytoriumStudent {
         return query.list();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings(nieoczekiwany)
     @Override
     public List<Student> getProjekcjaStudentowPoImieNazwisko() {
         Session session = entityManager.unwrap(Session.class);

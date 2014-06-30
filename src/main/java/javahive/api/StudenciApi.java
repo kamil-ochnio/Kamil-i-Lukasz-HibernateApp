@@ -58,7 +58,7 @@ public class StudenciApi {
 
     
     
-    public void usunStudentaOZadanymId(int id)throws IllegalArgumentException{
+    public void usunStudentaOZadanymId(int id)throws Exception{
         List <Student> studenty = finder.findAll(Student.class);
         boolean zawieraSie = false;
         for(Student student : studenty){
@@ -74,7 +74,7 @@ public class StudenciApi {
         
     }
     
-    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws IllegalArgumentException{
+    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws Exception{
         List <Indeks> indeksy = finder.findAll(Indeks.class);
         for(Indeks indeks : indeksy){
             if (indeks.getNumer().equals(numerIndeksu)){
