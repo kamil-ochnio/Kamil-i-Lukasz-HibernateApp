@@ -2,7 +2,6 @@ package javahive.domain;
 import java.util.List;
 import javahive.infrastruktura.BaseEntity;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import lombok.Getter;

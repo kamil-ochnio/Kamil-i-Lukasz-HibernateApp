@@ -13,9 +13,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import javax.validation.UnexpectedTypeException;
+import javax.management.InvalidAttributeValueException;
 
-import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class StudenciApi {
 
     
     
-    public void usunStudentaOZadanymId(int id)throws UnexpectedTypeException{
+    public void usunStudentaOZadanymId(int id)throws InvalidAttributeValueException{
         List <Student> studenty = finder.findAll(Student.class);
         boolean zawieraSie = false;
         for(Student student : studenty){
@@ -71,16 +70,16 @@ public class StudenciApi {
         if(zawieraSie){
             repozytoriumStudent.usunStudentaOZadanymId(id);
         }else{
-            throw new UnexpectedTypeException("Student o zadanym id nie figuruje w bazie danych");
+            throw new InvalidAttributeValueException("Student o zadanym id nie figuruje w bazie danych");
         }
         
     }
     
-    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws UnexpectedTypeException{
+    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws InvalidAttributeValueException{
         List <Indeks> indeksy = finder.findAll(Indeks.class);
         for(Indeks indeks : indeksy){
             if (indeks.getNumer().equals(numerIndeksu)){
-                throw new UnexpectedTypeException("Ten nr. indeksu jest juz zajety");
+                throw new InvalidAttributeValueException("Ten nr. indeksu jest juz zajety");
             }
         }
         repozytoriumStudent.dodajStudenta(student, numerIndeksu);
