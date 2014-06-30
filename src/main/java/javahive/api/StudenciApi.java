@@ -13,7 +13,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.validation.UnexpectedTypeException;
 
+import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +60,7 @@ public class StudenciApi {
 
     
     
-    public void usunStudentaOZadanymId(int id)throws Exception{
+    public void usunStudentaOZadanymId(int id)throws UnexpectedTypeException{
         List <Student> studenty = finder.findAll(Student.class);
         boolean zawieraSie = false;
         for(Student student : studenty){
@@ -69,16 +71,16 @@ public class StudenciApi {
         if(zawieraSie){
             repozytoriumStudent.usunStudentaOZadanymId(id);
         }else{
-            throw new IllegalArgumentException ("Student o zadanym id nie figuruje w bazie danych");
+            throw new UnexpectedTypeException("Student o zadanym id nie figuruje w bazie danych");
         }
         
     }
     
-    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws Exception{
+    public void dodajStudenta(StudentDTO student, String numerIndeksu) throws UnexpectedTypeException{
         List <Indeks> indeksy = finder.findAll(Indeks.class);
         for(Indeks indeks : indeksy){
             if (indeks.getNumer().equals(numerIndeksu)){
-                throw new IllegalArgumentException("Ten nr. indeksu jest juz zajety");
+                throw new UnexpectedTypeException("Ten nr. indeksu jest juz zajety");
             }
         }
         repozytoriumStudent.dodajStudenta(student, numerIndeksu);
