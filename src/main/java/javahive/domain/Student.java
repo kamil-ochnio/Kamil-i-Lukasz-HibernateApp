@@ -38,23 +38,21 @@ import com.google.common.collect.Lists;
 
 
 public class Student extends BaseEntity {
+    
+    private static final String NIEUZYWANY = "unused";
     public Student(){};
-    private static final String NIEUZYWANY = "Unused";
-@SuppressWarnings(NIEUZYWANY)
-        private String imie;
-@SuppressWarnings(NIEUZYWANY)
-        private String nazwisko;
-@SuppressWarnings(NIEUZYWANY)
-        private boolean wieczny;
+   
+        private String imie;//NOSONAR
+        private String nazwisko;//NOSONAR
+        private boolean wieczny;//NOSONAR
         //@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
     
     @OneToMany(mappedBy="student")
     @Cascade(CascadeType.ALL)
-    @SuppressWarnings(NIEUZYWANY)
-    private List<Ocena> oceny=Lists.newArrayList();
+  
+    private List<Ocena> oceny=Lists.newArrayList();//NOSONAR
     @OneToOne
     @Cascade(CascadeType.ALL)
-    @SuppressWarnings(NIEUZYWANY)
-    private Indeks indeks;
+    private Indeks indeks;//NOSONAR
 }
         
