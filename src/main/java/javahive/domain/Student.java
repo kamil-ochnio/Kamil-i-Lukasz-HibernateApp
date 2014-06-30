@@ -34,23 +34,23 @@ import com.google.common.collect.Lists;
 
 
 public class Student extends BaseEntity {
- private final String nieuzywana="unused";
+ private static final String nieuzywana="unused";
     public Student(){};
-        @SuppressWarnings(nieuzywana)
+        @SuppressWarnings(Student.nieuzywana)
         private String imie;
-        @SuppressWarnings(nieuzywana)
+        @SuppressWarnings(Student.nieuzywana)
         private String nazwisko;
-        @SuppressWarnings(nieuzywana)
+        @SuppressWarnings(Student.nieuzywana)
         private boolean wieczny;
         //@OneToMany(mappedBy="student",fetch= FetchType.EAGER)
     
     @OneToMany(mappedBy="student")
     @Cascade(CascadeType.ALL)
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(Student.nieuzywana)
     private List<Ocena> oceny=Lists.newArrayList();
     @OneToOne
     @Cascade(CascadeType.ALL)
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(Student.nieuzywana)
     private Indeks indeks;
 }
         

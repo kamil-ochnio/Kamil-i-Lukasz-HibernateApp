@@ -16,14 +16,14 @@ import java.io.Serializable;
 
 public class StudentDTO implements Serializable{
     private static final String nieuzywana="unused";
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(StudentDTO.nieuzywana)
     private int id;
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(StudentDTO.nieuzywana)
     private String imie;
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(StudentDTO.nieuzywana)
     private String nazwisko;
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(StudentDTO.nieuzywana)
     private boolean wieczny;
-    @SuppressWarnings(nieuzywana)
+    @SuppressWarnings(StudentDTO.nieuzywana)
     private String numerIndeksu;
 }
